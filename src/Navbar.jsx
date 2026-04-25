@@ -41,8 +41,8 @@ const Navbar = ({
             title={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
           >
             <span className={`theme-icon-wrap ${theme === 'dark' ? 'is-dark' : ''}`}>
-              <Icon className="theme-icon sun-icon" icon="solar:sun-bold-duotone" />
-              <Icon className="theme-icon moon-icon" icon="solar:moon-stars-bold-duotone" />
+              <Icon className="theme-icon sun-icon" icon="solar:sun-bold" />
+              <Icon className="theme-icon moon-icon" icon="solar:moon-stars-bold" />
             </span>
           </button>
           <a href="/#register">Register</a>
@@ -58,8 +58,8 @@ const Navbar = ({
             title={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
           >
             <span className={`theme-icon-wrap ${theme === 'dark' ? 'is-dark' : ''}`}>
-              <Icon className="theme-icon sun-icon" icon="solar:sun-bold-duotone" />
-              <Icon className="theme-icon moon-icon" icon="solar:moon-stars-bold-duotone" />
+              <Icon className="theme-icon sun-icon" icon="solar:sun-bold" />
+              <Icon className="theme-icon moon-icon" icon="solar:moon-stars-bold" />
             </span>
           </button>
           <a href="/#contact" className="mobile-contact-button">

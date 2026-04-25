@@ -133,12 +133,11 @@ a {
 }
 
 .footer-content {
-  max-width: 1400px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 120px;
-  padding: 0 180px; /* Content aligns with the 180px master grid */
+  padding: 0 180px;
   box-sizing: border-box;
 }
 

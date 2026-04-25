@@ -38,17 +38,17 @@ const ServicesPage = () => {
   useEffect(() => {
     let ctx = gsap.context(() => {
       const items = document.querySelectorAll('.parallax-item')
-      
+
       items.forEach((item) => {
         const speed = parseFloat(item.getAttribute('data-speed'))
         const img = item.querySelector('img')
-        
+
         // Window Parallax: Animate the image inside the container
         if (img) {
           // Kinetic Reveal Animation: High-impact scale, rotation, and blur
-          gsap.fromTo(item, 
-            { 
-              scale: 0.7, 
+          gsap.fromTo(item,
+            {
+              scale: 0.7,
               opacity: 0,
               rotationX: -10,
               rotationY: 5,
@@ -61,7 +61,7 @@ const ServicesPage = () => {
               rotationY: 0,
               filter: 'blur(0px)',
               duration: 0.4, // Accelerated for high-speed snap
-              ease: 'back.out(1.4)', 
+              ease: 'back.out(1.4)',
               scrollTrigger: {
                 trigger: item,
                 start: 'top 92%',
@@ -71,7 +71,7 @@ const ServicesPage = () => {
           )
 
           // Parallax Drift: Animate the internal image drift
-          gsap.fromTo(img, 
+          gsap.fromTo(img,
             { y: '10%' },
             {
               y: '-10%',
@@ -113,7 +113,7 @@ const ServicesPage = () => {
 
   return (
     <div className={`services-page-root theme-${theme}`}>
-      <Navbar 
+      <Navbar
         isNavbarScrolled={isNavbarScrolled}
         isMobileMenuOpen={isMobileMenuOpen}
         setIsMobileMenuOpen={setIsMobileMenuOpen}
@@ -146,9 +146,9 @@ const ServicesPage = () => {
               <span className="capability-index">01</span>
               <h2 className="capability-title">Branding</h2>
               <p className="capability-desc">
-                At the core of our approach, we maintain that brand and UX are 
-                inextricably connected and work together. Our team specializes 
-                in creating and implementing digital brand identities across 
+                At the core of our approach, we maintain that brand and UX are
+                inextricably connected and work together. Our team specializes
+                in creating and implementing digital brand identities across
                 channels, providing strategy assistance and guidelines to ensure consistency.
               </p>
               <ul className="capability-list">
@@ -171,10 +171,10 @@ const ServicesPage = () => {
               <span className="capability-index">02</span>
               <h2 className="capability-title">Digital Products</h2>
               <p className="capability-desc">
-                At Ceyrix, we make every touchpoint an opportunity to make our 
-                experience whether using a product at work or in their free 
-                time. We create memorable products and services that 
-                user-centric as well as provide comprehensive design systems 
+                At Ceyrix, we make every touchpoint an opportunity to make our
+                experience whether using a product at work or in their free
+                time. We create memorable products and services that
+                user-centric as well as provide comprehensive design systems
                 for effortless product iteration.
               </p>
               <ul className="capability-list">
@@ -197,9 +197,9 @@ const ServicesPage = () => {
               <span className="capability-index">03</span>
               <h2 className="capability-title">Websites</h2>
               <p className="capability-desc">
-                A website is the most important channel to showcase your 
-                brand to customers. Our portfolio features award-winning 
-                websites designed to give users the best experience 
+                A website is the most important channel to showcase your
+                brand to customers. Our portfolio features award-winning
+                websites designed to give users the best experience
                 possible while also meeting business goals.
               </p>
               <ul className="capability-list">
@@ -222,8 +222,8 @@ const ServicesPage = () => {
               <span className="capability-index">04</span>
               <h2 className="capability-title">Content</h2>
               <p className="capability-desc">
-                Authentic content is essential in the digital world. We work 
-                with brands to identify their unique brand voice and deliver 
+                Authentic content is essential in the digital world. We work
+                with brands to identify their unique brand voice and deliver
                 custom-made assets of the highest quality down to the last pixel.
               </p>
               <ul className="capability-list">
@@ -246,9 +246,9 @@ const ServicesPage = () => {
               <span className="capability-index">05</span>
               <h2 className="capability-title">Development</h2>
               <p className="capability-desc">
-                Our designers and developers collaborate to create 
-                websites and products that provide exceptional user 
-                experience and functionality. We optimize search engine 
+                Our designers and developers collaborate to create
+                websites and products that provide exceptional user
+                experience and functionality. We optimize search engine
                 visibility, ensure accessibility, and maximize performance.
               </p>
               <ul className="capability-list">

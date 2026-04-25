@@ -7,12 +7,12 @@ import Footer from './Footer'
 // import { Float, MeshTransmissionMaterial } from '@react-three/drei'
 
 
-import ceyrixLogo from './assets/ceyrix-logo.png'
-import expertLillian from './assets/expert-lillian.png'
-import expert2 from './assets/expert-2.png'
-import section5Vid from './assets/section5.mp4'
-import heroVid from './assets/hero.mp4'
-import nobiasVid from './assets/nobias.mp4' // The high-fidelity product video
+const ceyrixLogo = '/ceyrix-logo.png'
+const expertLillian = '/expert-lillian.png'
+const expert2 = '/expert-2.png'
+const section5Vid = '/section5.mp4'
+const heroVid = '/hero.mp4'
+const nobiasVid = '/nobias.mp4'
 import gsap from 'gsap'
 import './App.css'
 
@@ -209,7 +209,7 @@ function ProcessSection() {
         <source src={section5Vid} type="video/mp4" />
       </video>
       <div className="process-overlay"></div>
-      
+
       <div className="process-content-wrapper">
         <div className="process-header">
           <h2 className="process-title">Reimagined for You</h2>
@@ -217,7 +217,7 @@ function ProcessSection() {
             Our tech-driven platform provides end-to-end visibility and control over your complex software enterprise.
           </p>
         </div>
-        
+
         <div className="process-grid">
           {steps.map((step, idx) => (
             <div key={idx} className="process-card">
@@ -244,7 +244,7 @@ function ExpertSourcing() {
             <span className="brand-text">ceyrix</span>
             <span className="pro-text pink">pro.</span>
           </div>
-          
+
           <h2 className="expert-sourcing-title">
             Let experts find the right <br />
             freelancer for you
@@ -272,7 +272,7 @@ function ExpertSourcing() {
             <div className="more-bubble">
               <span>...</span>
             </div>
-            
+
             <div className="expert-cards-stack">
               <div className="expert-card card-3">
                 <img src={expert2} alt="Expert" />
@@ -292,7 +292,7 @@ function ExpertSourcing() {
                   </div>
                 </div>
               </div>
-              
+
               <div className="fiverr-cursor">
                 <Icon icon="solar:cursor-bold" />
               </div>
@@ -328,16 +328,16 @@ function ProjectGallery() {
       <div className="gallery-grid">
         {/* NOBIAS - Single Exclusive Card */}
         <div className="project-card large">
-          <div 
+          <div
             className="project-media-wrap"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
             <div className="project-dim-overlay"></div>
-            <video 
+            <video
               ref={videoRef}
-              className="project-video" 
-              muted 
+              className="project-video"
+              muted
               loop
               playsInline
             >
@@ -458,13 +458,13 @@ function App() {
 
   useEffect(() => {
     const lines = document.querySelectorAll('[data-hero-line]')
-    gsap.fromTo(lines, 
-      { y: 100, opacity: 0 }, 
-      { 
-        y: 0, 
-        opacity: 1, 
-        duration: 1.2, 
-        stagger: 0.15, 
+    gsap.fromTo(lines,
+      { y: 100, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1.2,
+        stagger: 0.15,
         ease: "power4.out",
         delay: 0.4
       }
@@ -505,7 +505,7 @@ function App() {
 
   return (
     <div className="page">
-      <Navbar 
+      <Navbar
         isNavbarScrolled={isNavbarScrolled}
         isMobileMenuOpen={isMobileMenuOpen}
         setIsMobileMenuOpen={setIsMobileMenuOpen}

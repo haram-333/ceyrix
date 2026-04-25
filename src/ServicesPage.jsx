@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
-import ceyrixLogo from './assets/ceyrix-logo.png'
+const ceyrixLogo = '/ceyrix-logo.png'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import './ServicesPage.css'
@@ -41,7 +41,7 @@ const ServicesPage = () => {
 
       items.forEach((item) => {
         const speed = parseFloat(item.getAttribute('data-speed'))
-        const img = item.querySelector('img')
+        const img = item.querySelector('img, video')
 
         // Window Parallax: Animate the image inside the container
         if (img) {

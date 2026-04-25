@@ -514,6 +514,7 @@ function App() {
         toggleTheme={toggleTheme}
         theme={theme}
         mobileMenuItems={mobileMenuItems}
+        heroNav={true}
       />
 
 

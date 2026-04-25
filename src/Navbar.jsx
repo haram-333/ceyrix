@@ -10,11 +10,12 @@ const Navbar = ({
   isThemeFlash, 
   toggleTheme, 
   theme,
-  mobileMenuItems 
+  mobileMenuItems,
+  heroNav
 }) => {
   return (
     <>
-      <header className={`navbar ${isNavbarScrolled ? 'is-scrolled' : ''}`}>
+      <header className={`navbar ${isNavbarScrolled ? 'is-scrolled' : ''} ${heroNav && !isNavbarScrolled ? 'is-hero-nav' : ''}`}>
         <Link
           to="/"
           className={`brand ${isMobileMenuOpen ? 'menu-open-logo' : ''}`}

@@ -53,18 +53,28 @@ body[data-theme='dark'] .navbar.is-scrolled {
   border-color: rgba(255, 255, 255, 0.12);
 }
 
-/* When floating over a hero video — force white text regardless of theme */
+/* When floating over a hero video — white text on nav links ONLY, not the icon */
 .navbar.is-hero-nav .main-nav a,
-.navbar.is-hero-nav .nav-actions a,
-.navbar.is-hero-nav .theme-button,
-.navbar.is-hero-nav .theme-icon {
+.navbar.is-hero-nav .nav-actions a {
   color: #ffffff;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
 }
 
-.navbar.is-hero-nav .brand-logo-light {
-  filter: brightness(0) invert(1);
-  opacity: 1;
+/* Theme icon: always crisp black on light, white on dark — no gray */
+.theme-icon {
+  color: #000000 !important;
+}
+body[data-theme='dark'] .theme-icon {
+  color: #ffffff !important;
+}
+
+/* Override for hero nav to ensure black in light mode, white in dark mode */
+.navbar.is-hero-nav .theme-icon {
+  color: #000000 !important;
+  text-shadow: none;
+}
+body[data-theme='dark'] .navbar.is-hero-nav .theme-icon {
+  color: #ffffff !important;
 }
 
 .nav-actions {
@@ -245,8 +255,12 @@ body[data-theme='dark'] .brand-logo-dark {
   padding: 0;
   display: grid;
   place-items: center;
-  color: var(--theme-icon-color);
+  color: #000000; /* Pure black in light mode */
   transition: transform 240ms ease, background-color 240ms ease;
+}
+
+body[data-theme='dark'] .theme-button {
+  color: #ffffff; /* Pure white in dark mode */
 }
 
 .theme-button:hover,
@@ -291,10 +305,14 @@ body[data-theme='dark'] .theme-button:focus-visible {
   position: absolute;
   inset: 0;
   font-size: 20px;
-  color: var(--theme-icon-color);
+  color: #000000;
   transition:
     transform 320ms ease,
     opacity 280ms ease;
+}
+
+body[data-theme='dark'] .theme-icon {
+  color: #ffffff;
 }
 
 .sun-icon {
@@ -1091,11 +1109,16 @@ button {
     border: none;
     border-radius: 999px;
     background: rgba(21, 25, 36, 0.06);
-    color: var(--theme-icon-color);
+    color: #000000;
     display: grid;
     place-items: center;
     padding: 0;
     cursor: pointer;
+  }
+
+  body[data-theme='dark'] .mobile-theme-button {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
   }
 
   .mobile-theme-button .theme-icon-wrap {

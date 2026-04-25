@@ -15,16 +15,17 @@ const ServicesPage = () => {
   const [isThemeFlash, setIsThemeFlash] = useState(false)
 
   useEffect(() => {
-    document.body.dataset.theme = theme
-  }, [theme])
-
-  useEffect(() => {
     const handleScroll = () => {
       setIsNavbarScrolled(window.scrollY > 50)
     }
-    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Sync theme state → DOM so CSS variables kick in
+  useEffect(() => {
+    document.body.dataset.theme = theme
+  }, [theme])
 
   const toggleTheme = () => {
     setIsThemeFlash(true)
@@ -45,7 +46,7 @@ const ServicesPage = () => {
 
       items.forEach((item) => {
         const speed = parseFloat(item.getAttribute('data-speed'))
-        const img = item.querySelector('img, video')
+        const img = item.querySelector('img')
 
         // Window Parallax: Animate the image inside the container
         if (img) {

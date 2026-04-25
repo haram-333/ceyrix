@@ -15,10 +15,14 @@ const ServicesPage = () => {
   const [isThemeFlash, setIsThemeFlash] = useState(false)
 
   useEffect(() => {
+    document.body.dataset.theme = theme
+  }, [theme])
+
+  useEffect(() => {
     const handleScroll = () => {
       setIsNavbarScrolled(window.scrollY > 50)
     }
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 

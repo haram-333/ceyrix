@@ -1,0 +1,358 @@
+.services-page-root {
+  background: #ffffff;
+  min-height: 100vh;
+  width: 100%;
+  color: #111111;
+  font-family: 'Inter', sans-serif;
+  padding: 0 180px; /* Match homepage architectural grid */
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Fix double scrollbar by ensuring body/html doesn't fight with root */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Services Hero */
+.services-hero {
+  position: relative;
+  padding: 160px 0; /* Side padding handled by root */
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-content-wrap {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+}
+
+.hero-headline {
+  font-size: clamp(48px, 6vw, 88px); /* More disciplined professional scale */
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin: 0 0 40px 0;
+  color: #000000;
+}
+
+.hero-subheadline {
+  font-size: clamp(18px, 2vw, 24px);
+  line-height: 1.6;
+  color: #444444;
+  font-weight: 400;
+  max-width: 700px;
+  letter-spacing: -0.01em;
+}
+
+/* Services Alternating Capability Rows */
+.services-capabilities {
+  padding: 100px 0 200px; /* Side padding handled by root */
+  background: #ffffff;
+}
+
+.capability-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 180px; /* Expansive architectural gap between rows */
+  perspective: 1200px; /* Enables realistic 3D rotations for the pop effect */
+}
+
+.capability-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 100px;
+}
+
+.capability-row.reverse {
+  flex-direction: row-reverse;
+}
+
+.capability-text-side {
+  flex: 1;
+  max-width: 500px;
+}
+
+.capability-index {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #888888;
+  margin-bottom: 16px;
+  font-family: 'Inter', sans-serif;
+}
+
+.capability-title {
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 800;
+  margin: 0 0 24px 0;
+  letter-spacing: -0.04em;
+  color: #000000;
+  line-height: 1.1;
+}
+
+.capability-desc {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #444444;
+  margin-bottom: 48px;
+  max-width: 460px;
+}
+
+.capability-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.capability-list li {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111111;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: default;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.capability-list li span {
+  font-size: 18px;
+  color: #cccccc;
+  font-weight: 400;
+  transition: color 0.2s ease;
+}
+
+.capability-list li:hover {
+  transform: translateX(4px);
+  color: #000000;
+}
+
+.capability-list li:hover span {
+  color: #000000;
+}
+
+.capability-image-side {
+  flex: 1.2;
+  position: relative;
+  aspect-ratio: 4/5;
+  border-radius: 4px;
+  overflow: hidden;
+  /* Removed background color to prevent 'box' look */
+}
+
+.capability-image-side img {
+  width: 100%;
+  height: 130%; /* Buffer for vertical drift */
+  object-fit: cover;
+  display: block;
+  /* No static scale here, GSAP handles the entrance and drift */
+}
+
+/* Floating Decorative Shapes Background */
+.capability-container {
+  position: relative; /* Anchor for shapes */
+}
+
+.floating-shape {
+  position: absolute;
+  z-index: -1; /* Behind everything */
+  background: linear-gradient(135deg, #f8f8f8 0%, #e0e0e0 100%);
+  border-radius: 8px;
+  opacity: 0.6;
+  filter: blur(2px);
+  box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
+}
+
+.shape-1 {
+  width: 280px;
+  height: 280px;
+  top: 10%;
+  right: -100px;
+  border-radius: 50% 50% 0 50%;
+  transform: rotate(15deg);
+}
+
+.shape-2 {
+  width: 320px;
+  height: 320px;
+  top: 40%;
+  left: -150px;
+  border-radius: 20px;
+  transform: rotate(-25deg);
+}
+
+.shape-3 {
+  width: 240px;
+  height: 240px;
+  bottom: 10%;
+  right: -50px;
+  border-radius: 50%;
+}
+
+.parallax-item {
+  will-change: transform;
+}
+
+/* Industries Section */
+.services-industries {
+  padding: 160px 0; /* Side padding handled by root */
+  background: #ffffff;
+  border-top: 1px solid #f0f0f0;
+}
+
+.industries-header {
+  max-width: 1400px;
+  margin: 0 auto 100px;
+}
+
+.industries-title {
+  font-size: 64px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin: 0 0 24px 0;
+  color: #000000;
+}
+
+.industries-subtitle {
+  font-size: 20px;
+  line-height: 1.5;
+  color: #444444;
+  margin: 0;
+  max-width: 600px;
+}
+
+.industries-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  border-top: 1px solid #e5e5e5;
+}
+
+.industry-row {
+  display: grid;
+  grid-template-columns: 1fr 2.5fr;
+  padding: 48px 0;
+  border-bottom: 1px solid #e5e5e5;
+  gap: 60px;
+  transition: background 0.2s ease;
+}
+
+.industry-row:hover {
+  background: #fafafa;
+}
+
+.industry-name {
+  font-size: 18px;
+  font-weight: 800;
+  color: #000000;
+  letter-spacing: -0.02em;
+}
+
+.industry-clients {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666666;
+  max-width: 900px;
+}
+
+/* RESPONSIVE OVERRIDES */
+
+@media (max-width: 1400px) {
+  .services-page-root {
+    padding: 0 80px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .services-page-root {
+    padding: 0 40px;
+  }
+
+  .services-hero {
+    padding: 120px 0;
+  }
+
+  .hero-headline {
+    font-size: 56px;
+  }
+
+  .capability-row {
+    flex-direction: column !important;
+    gap: 48px;
+    align-items: flex-start;
+  }
+
+  .capability-text-side {
+    max-width: none;
+  }
+
+  .capability-image-side {
+    width: 100%;
+    max-height: 400px;
+  }
+
+  .services-capabilities {
+    padding: 80px 0 120px;
+  }
+
+  .services-industries {
+    padding: 100px 0;
+  }
+
+  .industries-title {
+    font-size: 48px;
+  }
+
+  .industry-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 32px 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .services-page-root {
+    padding: 0 24px;
+  }
+
+  .hero-headline {
+    font-size: 42px;
+  }
+
+  .hero-subheadline {
+    font-size: 18px;
+  }
+
+  .capability-title {
+    font-size: 36px;
+  }
+
+  .capability-desc {
+    font-size: 16px;
+  }
+
+  .floating-shape {
+    display: none; /* Hide decorative shapes on mobile to keep it clean */
+  }
+
+  .industries-title {
+    font-size: 36px;
+  }
+
+  .industries-subtitle {
+    font-size: 18px;
+  }
+}

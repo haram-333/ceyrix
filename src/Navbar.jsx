@@ -26,10 +26,10 @@ const Navbar = ({
         </Link>
 
         <nav className="main-nav" aria-label="Main navigation">
-          <a href="/#projects">Projects</a>
-          <a href="/#process">Process</a>
+          <Link to="/projects">Projects</Link>
+          <Link to="/process">Process</Link>
           <Link to="/services">Services</Link>
-          <a href="/#request">Request Project</a>
+          <Link to="/contact">Contact</Link>
         </nav>
 
         <div className="nav-actions">
@@ -45,8 +45,8 @@ const Navbar = ({
               <Icon className="theme-icon moon-icon" icon="solar:moon-stars-bold" />
             </span>
           </button>
-          <a href="/#register">Register</a>
-          <a href="/#login">Login</a>
+          <Link to="/signup" className="nav-signup-btn">Sign Up</Link>
+          <Link to="/login" className="nav-login-btn">Login</Link>
         </div>
 
         <div className="mobile-nav-actions">
@@ -62,9 +62,9 @@ const Navbar = ({
               <Icon className="theme-icon moon-icon" icon="solar:moon-stars-bold" />
             </span>
           </button>
-          <a href="/#contact" className="mobile-contact-button">
+          <Link to="/contact" className="mobile-contact-button">
             Contact
-          </a>
+          </Link>
           <button
             type="button"
             className={`mobile-menu-toggle ${isMobileMenuOpen ? 'is-open' : ''}`}
@@ -83,11 +83,16 @@ const Navbar = ({
         <div className="mobile-menu-content">
           <nav className="mobile-menu-links" aria-label="Mobile menu">
             {mobileMenuItems.map((item, index) => {
-              if (item.label === 'Services') {
+              if (item.label === 'Services' || item.label === 'Process' || item.label === 'Projects' || item.label === 'Contact' || item.label === 'Login' || item.label === 'Sign Up') {
+                const toPath = item.label === 'Services' ? '/services' : 
+                               item.label === 'Process' ? '/process' : 
+                               item.label === 'Projects' ? '/projects' : 
+                               item.label === 'Contact' ? '/contact' : 
+                               item.label === 'Login' ? '/login' : '/signup';
                 return (
                   <Link
                     key={item.label}
-                    to="/services"
+                    to={toPath}
                     style={{ '--menu-delay': `${130 + index * 70}ms` }}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >

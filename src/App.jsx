@@ -355,7 +355,7 @@ function ProjectGallery() {
 }
 
 function App() {
-  const [theme, setTheme] = useState('light')
+  const [theme, setTheme] = useState(localStorage.getItem('ceyrix-theme') || 'light')
   const [isThemeFlash, setIsThemeFlash] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isNavbarScrolled, setIsNavbarScrolled] = useState(false)
@@ -453,7 +453,11 @@ function App() {
     flashTimeoutRef.current = setTimeout(() => {
       setIsThemeFlash(false)
     }, 420)
-    setTheme((currentTheme) => (currentTheme === 'light' ? 'dark' : 'light'))
+    setTheme((currentTheme) => {
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      localStorage.setItem('ceyrix-theme', newTheme);
+      return newTheme;
+    })
   }
 
   useEffect(() => {
@@ -495,12 +499,12 @@ function App() {
   }
 
   const mobileMenuItems = [
-    { label: 'Projects', href: '#projects' },
-    { label: 'Process', href: '#process' },
-    { label: 'Services', href: '#services-showcase' },
-    { label: 'Request Project', href: '#request' },
-    { label: 'Register', href: '#register' },
-    { label: 'Login', href: '#login' },
+    { label: 'Projects', href: '/projects' },
+    { label: 'Process', href: '/process' },
+    { label: 'Services', href: '/services' },
+    { label: 'Contact', href: '/contact' },
+    { label: 'Sign Up', href: '/signup' },
+    { label: 'Login', href: '/login' },
   ]
 
   return (

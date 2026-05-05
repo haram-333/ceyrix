@@ -34,10 +34,12 @@ const ServicesPage = () => {
   }
 
   const mobileMenuItems = [
-    { label: 'Projects', href: '/#projects' },
-    { label: 'Process', href: '/#process' },
+    { label: 'Projects', href: '/projects' },
+    { label: 'Process', href: '/process' },
     { label: 'Services', href: '/services' },
-    { label: 'Request Project', href: '/#request' }
+    { label: 'Contact', href: '/contact' },
+    { label: 'Sign Up', href: '/signup' },
+    { label: 'Login', href: '/login' }
   ]
 
   useEffect(() => {

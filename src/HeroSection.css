@@ -1,0 +1,289 @@
+/* ═══════════════════════════════════════════════════════════════
+   EDITORIAL BLUEPRINT HERO
+   ═══════════════════════════════════════════════════════════════ */
+
+.editorial-hero {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; /* LEFT align */
+  background: var(--bg-main, #0b1012);
+  overflow: hidden;
+  color: var(--text-main, #ffffff);
+  z-index: 10;
+  padding: 0 4%;
+}
+
+/* ── BACKGROUND VIDEO ── */
+.hero-bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+  z-index: 0;
+}
+
+body[data-theme='light'] .editorial-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6); /* Dark overlay for light mode */
+  z-index: 1; /* Sits above video, below grain and content */
+}
+
+/* ── AMBIENT GRAIN ── */
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 2; /* Moved up to sit above the light mode overlay */
+}
+
+/* ── HUD ELEMENTS ── */
+.hero-hud {
+  position: absolute;
+  width: 100%;
+  padding: 0 4%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.top-hud {
+  top: 120px; /* Below navbar */
+}
+
+.bottom-hud {
+  bottom: 40px;
+  align-items: flex-end;
+  justify-content: center; /* Center the scroll indicator */
+  pointer-events: none;
+}
+
+.hud-mono {
+  font-family: 'JetBrains Mono', 'Geist Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: #63e8c9;
+  opacity: 0.7;
+}
+
+.hud-line-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 150px;
+}
+
+.hud-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #63e8c9;
+  border-radius: 50%;
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.5); }
+}
+
+.hud-line {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, #63e8c9 0%, transparent 100%);
+  opacity: 0.5;
+}
+
+/* ── MAIN CONTENT & TYPOGRAPHY ── */
+.hero-center-content {
+  position: relative;
+  z-index: 2;
+  text-align: left;
+  max-width: 900px;
+}
+
+.hero-title {
+  font-size: clamp(4rem, 10vw, 9rem);
+  line-height: 1.1;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.title-sans {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+}
+
+.title-serif {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-weight: 400;
+  color: #63e8c9;
+  line-height: 0.9;
+  margin-top: 10px;
+}
+
+/* GSAP SplitType specific styles to hide overflow during animation */
+.hero-title .word {
+  overflow: hidden;
+  padding-bottom: 25px;
+  margin-bottom: -25px;
+  padding-right: 25px;
+  margin-right: -25px;
+}
+
+/* ── CTA ── */
+.hero-cta-wrap {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 20px;
+}
+
+.hero-cta {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: var(--text-main, #ffffff);
+  text-decoration: none;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  pointer-events: auto;
+}
+
+.hero-cta:hover {
+  border-bottom-color: #63e8c9;
+  color: #63e8c9;
+}
+
+.cta-icon {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.hero-cta:hover .cta-icon {
+  transform: translateX(5px);
+}
+
+/* ── FLOATING STAT BADGES — right side vertical stack ── */
+.hero-badge {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 1px solid rgba(99, 232, 201, 0.15);
+  background: rgba(11, 16, 18, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 3;
+  pointer-events: none;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+/* All badges anchored to the right side */
+.badge-r1 { right: 6%; top: 18%; }
+.badge-r2 { right: 6%; top: 37%; }
+.badge-r3 { right: 6%; top: 56%; }
+.badge-r4 { right: 6%; top: 75%; }
+
+/* Slight size variety for visual rhythm */
+.badge-r1 { width: 115px; height: 115px; }
+.badge-r2 { width: 105px; height: 105px; }
+.badge-r3 { width: 115px; height: 115px; }
+.badge-r4 { width: 100px; height: 100px; }
+
+.badge-value {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #63e8c9;
+  line-height: 1;
+}
+
+.badge-label {
+  font-family: 'JetBrains Mono', 'Geist Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 5px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ── SCROLL INDICATOR ── */
+.hero-scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.scroll-text {
+  font-family: 'JetBrains Mono', 'Geist Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.scroll-line-wrap {
+  width: 1px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-line {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #63e8c9;
+  animation: scrollLine 2s infinite cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+@keyframes scrollLine {
+  0% { top: -100%; }
+  100% { top: 100%; }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 980px) {
+  .badge-r1, .badge-r2, .badge-r3, .badge-r4 {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .top-hud, .bottom-hud .hud-line-container {
+    display: none; /* Minimal HUD on mobile */
+  }
+  .hero-scroll-indicator {
+    width: 100%;
+    align-items: center;
+  }
+}

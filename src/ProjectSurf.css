@@ -1,0 +1,224 @@
+/* ═══════════════════════════════════════════════════════════════
+   PROJECT SURF — 3D PERSPECTIVE GALLERY
+   A cinematic diagonal rail with infinite scroll wrapping.
+   ═══════════════════════════════════════════════════════════════ */
+
+.surf-section {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0b1012;
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  -webkit-font-smoothing: antialiased;
+}
+
+.surf-section:active {
+  cursor: grabbing;
+}
+
+/* ── ATMOSPHERIC BACKGROUND TEXT ── */
+.surf-bg-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(4rem, 13vw, 18rem);
+  font-weight: 950;
+  letter-spacing: -0.04em;
+  color: rgba(255, 255, 255, 0.02);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── 3D PERSPECTIVE VIEWPORT ── */
+.surf-viewport {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 2000px;
+  perspective-origin: 10% 50%;
+  z-index: 1;
+  overflow: visible;
+}
+
+.surf-scene {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+}
+
+/* ── INDIVIDUAL CARD ── */
+.surf-card {
+  width: 320px;
+  height: 384px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  transition: filter 0.25s ease;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+  will-change: transform, filter;
+}
+
+.surf-card-media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.surf-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* ── TECHNICAL MONO INDEX ── */
+.surf-card-idx {
+  position: absolute;
+  top: -28px;
+  left: 0;
+  font-family: 'JetBrains Mono', 'Geist Mono', monospace;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+}
+
+/* ── HOVER LABEL (minimalist) ── */
+.surf-card-label {
+  position: absolute;
+  right: -180px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.label-name {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  position: relative;
+  padding-left: 32px;
+}
+
+.label-name::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 1px;
+  background: #63e8c9;
+  transition: width 0.4s ease;
+}
+
+/* ── HOVER STATES ── */
+.surf-card.is-hovered {
+  filter: brightness(1.15) !important;
+  z-index: 999 !important;
+}
+
+.surf-card.is-hovered .surf-card-media img {
+  transform: scale(1.05);
+}
+
+.surf-card.is-hovered .surf-card-label {
+  opacity: 1;
+  right: -200px;
+}
+
+.surf-card.is-hovered .surf-card-idx {
+  color: #63e8c9;
+}
+
+/* ── SCROLL HINT ── */
+.surf-hint {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 10;
+}
+
+.surf-hint span {
+  font-family: 'JetBrains Mono', 'Geist Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.surf-hint-icon {
+  width: 20px;
+  height: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 6px;
+}
+
+.hint-dot {
+  width: 3px;
+  height: 6px;
+  background: #63e8c9;
+  border-radius: 2px;
+  animation: hintBounce 2s ease-in-out infinite;
+}
+
+@keyframes hintBounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(12px); opacity: 0.3; }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1200px) {
+  .surf-card {
+    width: 260px;
+    height: 312px;
+  }
+}
+
+@media (max-width: 768px) {
+  .surf-card {
+    width: 200px;
+    height: 240px;
+  }
+
+  .surf-card-label {
+    display: none;
+  }
+
+  .surf-bg-text {
+    font-size: 5rem;
+  }
+}

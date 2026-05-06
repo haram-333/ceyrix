@@ -829,25 +829,26 @@ body[data-theme='dark'] .theme-icon {
   transition: grid-template-rows 320ms ease;
 }
 
-.faq-answer {
+.faq-section .faq-answer {
   overflow: hidden;
   max-width: 860px;
   padding-right: 20px;
 }
 
-.faq-answer p {
+.faq-section .faq-answer p {
   margin: 0 0 24px;
+  padding: 0; /* Prevents bleeding from ContactPage.css */
   font-size: 26px;
   font-weight: 400;
   line-height: 1.34;
   color: rgba(255, 255, 255, 0.8) !important; /* Forced visibility */
 }
 
-.faq-answer p:last-child {
+.faq-section .faq-answer p:last-child {
   margin-bottom: 36px;
 }
 
-.faq-item.is-open .faq-answer-wrap {
+.faq-section .faq-item.is-open .faq-answer-wrap {
   grid-template-rows: 1fr;
 }
 
@@ -938,18 +939,56 @@ body[data-theme='dark'] .theme-icon {
 .schedule-call {
   position: fixed;
   right: 32px;
-  bottom: 24px;
+  bottom: 28px;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  min-width: 172px;
-  height: 44px;
-  background: #524748;
+  gap: 10px;
+  padding: 12px 22px;
+  background: rgba(11, 16, 18, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(99, 232, 201, 0.25);
+  border-radius: 100px;
   color: #ffffff;
   text-decoration: none;
-  font-size: 15px;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
   z-index: 20;
+  transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.schedule-call::after {
+  content: '→';
+  font-size: 1rem;
+  color: #63e8c9;
+  transition: transform 0.3s ease;
+}
+
+.schedule-call:hover {
+  background: rgba(99, 232, 201, 0.08);
+  border-color: rgba(99, 232, 201, 0.6);
+  box-shadow: 0 0 24px rgba(99, 232, 201, 0.15);
+  transform: translateY(-2px);
+}
+
+.schedule-call:hover::after {
+  transform: translateX(4px);
+}
+
+body[data-theme='light'] .schedule-call {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.12);
+  color: #000000;
+}
+
+body[data-theme='light'] .schedule-call:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: #63e8c9;
+  box-shadow: 0 0 24px rgba(99, 232, 201, 0.2);
+}
+
 
 body.menu-open {
   overflow: hidden;

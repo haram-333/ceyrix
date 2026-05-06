@@ -3,6 +3,12 @@ import { Icon } from '@iconify/react'
 import { Link } from 'react-router-dom'
 import Navbar from './Navbar'
 import Footer from './Footer'
+import ProjectSurf from './ProjectSurf'
+import HeroSection from './HeroSection'
+import LogoMarquee from './LogoMarquee'
+import ProcessSection from './ProcessSection'
+import './NobiasSection.css'
+import './ExpertSourcing.css'
 // import { Canvas, useFrame } from '@react-three/fiber'
 // import { Float, MeshTransmissionMaterial } from '@react-three/drei'
 
@@ -184,121 +190,88 @@ function DesignInnovation() {
   )
 }
 
-function ProcessSection() {
-  const steps = [
-    {
-      icon: "solar:document-text-linear",
-      title: "Submit Requirements",
-      desc: "Quickly describe your idea, upload project files, and send detailed requirements directly to our dedicated development team."
-    },
-    {
-      icon: "solar:calculator-minimalistic-linear",
-      title: "Transparent Quotations",
-      desc: "Receive clear and professional quotations including development scope, pricing, and estimated delivery timelines."
-    },
-    {
-      icon: "solar:widget-2-linear",
-      title: "Real-Time Tracking",
-      desc: "Monitor project progress, milestones, and updates in real time through your dedicated client dashboard."
-    }
-  ];
-
-  return (
-    <section className="process-section">
-      <video className="process-bg-video" autoPlay loop muted playsInline>
-        <source src={section5Vid} type="video/mp4" />
-      </video>
-      <div className="process-overlay"></div>
-
-      <div className="process-content-wrapper">
-        <div className="process-header">
-          <h2 className="process-title">Reimagined for You</h2>
-          <p className="process-subtitle">
-            Our tech-driven platform provides end-to-end visibility and control over your complex software enterprise.
-          </p>
-        </div>
-
-        <div className="process-grid">
-          {steps.map((step, idx) => (
-            <div key={idx} className="process-card">
-              <div className="step-icon-box">
-                <Icon icon={step.icon} />
-              </div>
-              <h3>{step.title}</h3>
-              <p>{step.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 function ExpertSourcing() {
+  const expertsCol1 = [
+    { id: 1, name: "Lillian", role: "Frontend Developer", img: expertLillian },
+    { id: 2, name: "David", role: "Fullstack Engineer", img: expert2 },
+  ]
+  
+  const expertsCol2 = [
+    { id: 3, name: "Sarah", role: "UI/UX Designer", img: expertLillian },
+    { id: 4, name: "Marcus", role: "Backend Architect", img: expert2 },
+  ]
+
   return (
     <section className="expert-sourcing-section">
-      <div className="expert-sourcing-container">
-        <div className="expert-ribbon">NEW</div>
-        <div className="expert-sourcing-content">
-          <div className="fiverr-pro-logo">
-            <span className="brand-text">ceyrix</span>
-            <span className="pro-text pink">pro.</span>
+      <div className="expert-container">
+        
+        {/* Left Side: Content */}
+        <div className="expert-content">
+          <div className="expert-badge">
+            <div className="pulse-dot"></div>
+            <span>Expert Sourcing</span>
           </div>
 
-          <h2 className="expert-sourcing-title">
-            Let experts find the right <br />
-            freelancer for you
+          <h2 className="expert-title">
+            Let experts find the right freelancer for you
           </h2>
 
-          <ul className="expert-sourcing-list">
-            <li>Work with experts who will source, interview, and vet freelancers for you</li>
-            <li>Get a report with clear recommendations</li>
-            <li>Hire vetted freelance talent with confidence</li>
+          <ul className="expert-list">
+            <li>
+              <Icon icon="solar:check-circle-linear" />
+              <span>Work with experts who will source, interview, and vet freelancers for you</span>
+            </li>
+            <li>
+              <Icon icon="solar:check-circle-linear" />
+              <span>Get a report with clear recommendations</span>
+            </li>
+            <li>
+              <Icon icon="solar:check-circle-linear" />
+              <span>Hire vetted freelance talent with confidence</span>
+            </li>
           </ul>
 
-          <div className="expert-sourcing-footer">
-            <button className="expert-cta">
-              Discover expert sourcing
+          <div className="expert-actions">
+            <button className="expert-btn">
+              Discover Expert Sourcing
             </button>
-            <div className="guarantee-badge">
-              <Icon icon="solar:dollar-minimalistic-bold" className="dollar-icon" />
+            <div className="expert-guarantee">
+              <Icon icon="solar:shield-check-bold" />
               <span>100% money-back guarantee</span>
             </div>
           </div>
         </div>
 
-        <div className="expert-sourcing-visual">
-          <div className="visual-elements">
-            <div className="more-bubble">
-              <span>...</span>
-            </div>
-
-            <div className="expert-cards-stack">
-              <div className="expert-card card-3">
-                <img src={expert2} alt="Expert" />
-              </div>
-              <div className="expert-card card-2">
-                <img src={expertLillian} alt="Expert" />
-              </div>
-              <div className="expert-card card-1">
-                <img src={expertLillian} alt="Lillian" />
-                <div className="card-info">
-                  <div className="mini-avatar">
-                    <img src={expertLillian} alt="Avatar" />
-                  </div>
-                  <div className="mini-text">
-                    <h3>Lillian</h3>
-                    <p>Website developer</p>
-                  </div>
+        {/* Right Side: Cinematic Dual Marquee */}
+        <div className="expert-visual-track">
+          {/* Column 1: Scrolls Up */}
+          <div className="expert-scroll-col scroll-up">
+            {[...expertsCol1, ...expertsCol1, ...expertsCol1].map((expert, idx) => (
+              <div className="modern-expert-card" key={`c1-${expert.id}-${idx}`}>
+                <img src={expert.img} alt={expert.name} className="expert-img-bg" />
+                <div className="expert-card-info">
+                  <h4>{expert.name}</h4>
+                  <p>{expert.role}</p>
                 </div>
               </div>
+            ))}
+          </div>
 
-              <div className="fiverr-cursor">
-                <Icon icon="solar:cursor-bold" />
+          {/* Column 2: Scrolls Down */}
+          <div className="expert-scroll-col scroll-down">
+            {[...expertsCol2, ...expertsCol2, ...expertsCol2].map((expert, idx) => (
+              <div className="modern-expert-card" key={`c2-${expert.id}-${idx}`}>
+                <img src={expert.img} alt={expert.name} className="expert-img-bg" />
+                <div className="expert-card-info">
+                  <h4>{expert.name}</h4>
+                  <p>{expert.role}</p>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
+
       </div>
     </section>
   )
@@ -306,47 +279,67 @@ function ExpertSourcing() {
 
 function ProjectGallery() {
   const videoRef = useRef(null)
+  const containerRef = useRef(null)
 
-  const handleMouseEnter = () => {
-    if (videoRef.current) {
-      videoRef.current.play()
+  const handleMouseMove = (e) => {
+    if (!containerRef.current) return
+    const rect = containerRef.current.getBoundingClientRect()
+    const x = (e.clientX - rect.left) / rect.width - 0.5
+    const y = (e.clientY - rect.top) / rect.height - 0.5
+
+    const mediaWrap = containerRef.current.querySelector('.nobias-media-wrap')
+    if (mediaWrap) {
+      mediaWrap.style.transform = `perspective(1200px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) scale3d(1.02, 1.02, 1.02)`
     }
   }
 
+  const handleMouseEnter = () => {
+    if (videoRef.current) videoRef.current.play()
+  }
+
   const handleMouseLeave = () => {
-    if (videoRef.current) {
-      videoRef.current.pause()
+    if (videoRef.current) videoRef.current.pause()
+    const mediaWrap = containerRef.current?.querySelector('.nobias-media-wrap')
+    if (mediaWrap) {
+      mediaWrap.style.transform = `perspective(1200px) rotateY(0deg) rotateX(0deg) scale3d(1, 1, 1)`
     }
   }
 
   return (
-    <section className="gallery-section">
-      <div className="gallery-header">
-        <h2 className="gallery-label">Featured Work</h2>
+    <section className="nobias-section">
+      <div className="nobias-header">
+        <span className="nobias-kicker">[ FEATURED PLATFORM ]</span>
+        <div className="nobias-line"></div>
       </div>
 
-      <div className="gallery-grid">
-        {/* NOBIAS - Single Exclusive Card */}
-        <div className="project-card large">
-          <div
-            className="project-media-wrap"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+      <div 
+        className="nobias-container"
+        ref={containerRef}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <div className="nobias-media-wrap">
+          <video
+            ref={videoRef}
+            className="nobias-video"
+            muted
+            loop
+            playsInline
           >
-            <div className="project-dim-overlay"></div>
-            <video
-              ref={videoRef}
-              className="project-video"
-              muted
-              loop
-              playsInline
-            >
-              <source src={nobiasVid} type="video/mp4" />
-            </video>
-          </div>
-          <div className="project-info">
-            <h3 className="project-name">NOBIAS</h3>
-            <p className="project-cat">Trading Journal & Analytics Platform</p>
+            <source src={nobiasVid} type="video/mp4" />
+          </video>
+          <div className="nobias-overlay"></div>
+          
+          <div className="nobias-content-layer">
+            <h2 className="nobias-title">NOBIAS</h2>
+            <div className="nobias-meta">
+              <span className="nobias-cat">Trading Journal & Analytics</span>
+              <div className="nobias-cta">
+                <span>Explore</span>
+                <Icon icon="solar:arrow-right-up-linear" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -524,36 +517,9 @@ function App() {
 
 
       <main>
-        <section className="hero-section">
-          <div className="hero-media">
-            <video
-              className="hero-video"
-              autoPlay
-              loop
-              muted
-              playsInline
-            >
-              <source src={heroVid} type="video/mp4" />
-            </video>
+        <HeroSection />
 
-            <div className="hero-overlay">
-              <div className="hero-content">
-                <h1>
-                  {heroLines.map((line, index) => (
-                    <div key={line} className="hero-line-mask">
-                      <span
-                        className={`hero-line ${line.includes('Digital') ? 'accent-text' : ''}`}
-                        data-hero-line
-                      >
-                        {line}
-                      </span>
-                    </div>
-                  ))}
-                </h1>
-              </div>
-            </div>
-          </div>
-        </section>
+        <ProjectSurf />
 
         <section
           id="services-showcase"
@@ -647,22 +613,9 @@ function App() {
               )
             })}
           </div>
-
-          <div className="logos-cloud">
-            {clientLogos.map((logo) => (
-              <div key={logo.name} className="logo-pill" data-name={logo.name}>
-                <Icon icon={logo.icon} aria-label={logo.name} />
-              </div>
-            ))}
-          </div>
-
-          <div className="view-all-clients-wrap">
-            <a href="#clients" className="view-all-clients">
-              <span>View all clients</span>
-              <Icon icon="solar:alt-arrow-right-linear" className="arrow-icon" />
-            </a>
-          </div>
         </section>
+
+        <LogoMarquee />
 
         <DesignInnovation />
 
